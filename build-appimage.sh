@@ -29,6 +29,8 @@ cd "$BUILD_DIR"
 # fetch URL of latest release tarball from the website
 latest_version_url=$(wget -qO- "http://www.planetmule.com/download/" | grep mule_linux | cut -d'"' -f2)
 
+export VERSION=$(echo "$latest_version_url" | sed 's|.*mule_linux_||g' | sed 's|.tar.*||g')
+
 wget "$latest_version_url" -O- | tar xz
 
 # inspect downloaded contents
